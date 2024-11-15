@@ -6,14 +6,54 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>문제</title>
   <style>
-    *{
-      margin:0;
-      padding:0;
+    * {
+      margin: 0;
+      padding: 0;
     }
-   
+
+    .container {
+      width: 800px;
+      margin: 0 auto;
+    }
+
+    table {
+      border-collapse: collapse;
+    }
+
+    td {
+      width: 100px;
+      border: 1px solid black;
+      text-align: center;
+      padding: 10px;
+    }
+
+    span {
+      width: 64px;
+      height: 64px;
+      display: inline-block;
+      background-image: url(/Step01/img/chair_2.png);
+    }
+
+    span:hover {
+      background-image: url(/Step01/img/chair_1.png);
+    }
   </style>
   <script>
-   
+    let peoples = Number(prompt('입장객은 몇 명인가요?', 0));
+    let line_peoples = Number(prompt('한 줄에 몇 명씩 앉습니까?'));
+    let max_line = Math.ceil(peoples / line_peoples);
+    let tag = `<div class='container'><table>`;
+    let chair_num = 1;
+    document.write(`<h1>자리배치도</h2><p>모두 ${max_line}줄이 필요합니다.</p>`);
+    for (i = 0; i < max_line; i++) {
+      tag += `<tr>`;
+      for (j = 0; j < line_peoples && chair_num <= peoples; j++) {
+        tag += `<td><span></span><br>좌석 : ${chair_num++}</td>`;
+      }
+      tag += `</tr>`;
+    }
+    tag += `</table><div>`;
+    document.write(tag);
   </script>
 </head>
 

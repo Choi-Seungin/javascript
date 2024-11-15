@@ -1,12 +1,41 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <script>
 
-    </script>
-  </head>
-  <body></body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script>
+    //사용자로부터 숫자 입력 1, 2, 3
+    //1을 입력하면 구글 url 출력
+    //2를 입력하면 네이버 url 출력
+    //3을 입력하면 다음 url 출력
+    //1~3이 아니면 싸이월드 url 출력
+
+    let n = prompt('숫자 입력, 1-Google, 2-Naver, 3-Daum', 0);
+    let url = 'https://www.'
+    switch (n) {
+      case '1':
+        url += 'google.com';
+        break;
+      case '2':
+        url += 'naver.com';
+        break;
+      case '3':
+        url += 'daum.net';
+        break;
+      default:
+        url += 'cyworld.com';
+    }
+    document.write(url)
+    alert(url)
+    location.href = url; //주소창에 입력된 url을 변경
+
+
+
+  </script>
+</head>
+
+<body></body>
+
 </html>

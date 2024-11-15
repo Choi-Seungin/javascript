@@ -1,16 +1,33 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>if문</title>
     <script>
-        
+        //점수를 5개 입력 받아서, 입력받은 점수들의 평균
+        let n = 0;
+        for (i = 0; i < 5; i++) {
+            n += Number(prompt('숫자 하나 입력하세요', 0));
+        }
+        n /= 5;
+        if (n >= 90) {
+            document.write("A");
+        } else if (n >= 80) {
+            document.write("B");
+        } else if (n >= 70) {
+            document.write("C");
+        } else if (n >= 60) {
+            document.write("D");
+        } else {
+            document.write("F");
+        }
     </script>
 </head>
+
 <body>
-    
+
 </body>
+
 </html>
-
-

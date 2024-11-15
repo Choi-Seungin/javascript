@@ -1,17 +1,39 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>반복문</title>
     <style>
-      
+        .container{
+            display: flex;
+            flex-flow: row nowrap;
+            gap : 30px
+        }
+        h2{
+            text-align: center;
+        }
     </style>
     <script>
-      
+        //2~9단까지 
+        let dan = 0;
+        let i = 0;
+        let tag = `<div class='container'>`
+        for (dan = 2; dan < 10; dan++) {
+            tag += `<div><h2>${dan}단</h2>`;
+            for(i = 1; i < 10; i++){
+                tag +=`<p>${dan} * ${i} = ${dan * i}</p>`;
+            }
+            tag += `</div>`;
+        }
+        tag += `</div>`;
+        document.write(tag);
     </script>
 </head>
+
 <body>
-    
+
 </body>
+
 </html>
