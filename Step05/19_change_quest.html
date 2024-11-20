@@ -5,7 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>event</title>
     <script>
-       
+       window.onload = () => {
+        document.querySelector('#host').onchange = e =>{
+            if(e.target.value == 4)
+            document.querySelector('#area').innerHTML += '<input>';
+
+        }
+       }
     </script>
 </head>
 <body>
@@ -16,7 +22,7 @@
         <option value="2">hanmail.net</option>
         <option value="3">nate.com</option>
         <option value="4">직접입력</option>
-    </select>
+    </select><br>
     <span id="area"></span>
 </body>
 </html>

@@ -113,8 +113,28 @@
             font-weight: bold;
         }
     </style>
-     <script>
-        
+    <script>
+        window.onload = () => {
+            let pass = document.querySelector('#pass');
+            let pass_chk = document.querySelector('#pass_chk');
+            document.querySelector('#frm').onsubmit = function (e) {
+                if (pass.value.length < 8 || pass.value.length > 32) {
+                    alert('비밀번호는 8자리 이상 32자리 이하로 입력해주세요.');
+                    pass.focus();
+                    e.preventDefault();
+                }
+                if(pass_chk.value.length == 0){
+                    alert('비밀번호를 재입력 해주세요.')
+                    pass_chk.focus();
+                    e.preventDefault();
+                }
+                if (pass.value != pass_chk.value) {
+                    alert('입력한 비밀번호가 다릅니다.');
+                    pass_chk.focus();
+                    e.preventDefault();
+                }
+            }
+        }
     </script>
 </head>
 

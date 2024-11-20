@@ -10,17 +10,21 @@
             margin: 0;
             padding: 0;
         }
-        strong{
+
+        strong {
             font-size: 1.5em;
         }
-        table{
+
+        table {
             width: 100%;
             border-collapse: collapse;
         }
-        caption{
+
+        caption {
             text-align: right;
         }
-        #btn_close{
+
+        #btn_close {
             width: 100px;
             height: 30px;
             background-color: #4e199e;
@@ -29,39 +33,50 @@
             border: 1px solid #190438;
             border-radius: 5px;
         }
-        #btn_close:hover{
+
+        #btn_close:hover {
             background-color: #190438
         }
-        #btn_close:active{
+
+        #btn_close:active {
             background-color: white;
         }
-        td, th{
+
+        td,
+        th {
             padding: 10px;
         }
-        th{
+
+        th {
             padding: 5px;
             background-color: #e9e9e9;
         }
-        td:first-child{
+
+        td:first-child {
             width: 5%;
             text-align: center;
         }
-        td:last-child{
+
+        td:last-child {
             width: 10%;
             text-align: center;
         }
-        tbody > tr:nth-child(2n){
+
+        tbody>tr:nth-child(2n) {
             color: white;
             background-color: #2d1355;
         }
-        tbody > tr:nth-child(2n+1){
+
+        tbody>tr:nth-child(2n+1) {
             color: white;
             background-color: #0c021b;
         }
-        h3.title{
+
+        h3.title {
             cursor: pointer;
         }
-        div.content{
+
+        div.content {
             height: 0px;
             overflow: hidden;
             transition: all 0.5s;
@@ -74,18 +89,24 @@
             // console.log(document.querySelector('.title').nextElementSibling);
             //선택된 태그의 이전 위치에 있는 태그 선택(형 요소 선택)
             // console.log(document.querySelector('.title').previousElementSibling);
-            
+
             //1. .title 클릭 시 클릭된 .title 다음에 있는 .content를 본래 크기대로 보여줌
             document.querySelectorAll('.title').forEach((item) => {
-                item.addEventListener('click',function(){
+                item.addEventListener('click', function () {
                     console.log(this.nextElementSibling);
                     //2. 이미 보여주고 있으면 다시 숨김 처리
-                    if(this.nextElementSibling.clientHeight == 0){
+                    if (this.nextElementSibling.clientHeight == 0) {
                         this.nextElementSibling.style.height = this.nextElementSibling.scrollHeight + 'px';
-                    }else{
+                    } else {
                         this.nextElementSibling.style.height = 0 + 'px';
                     }
                 });
+            })
+            //all close 버튼 눌렀을 때 모든 content를 0px로 바꾸는 작업
+            document.querySelector('#btn_close').addEventListener('click',function(){
+                document.querySelectorAll('.content').forEach((item)=>{
+                    item.style.height = 0 + 'px';
+                })
             })
         }
     </script>
