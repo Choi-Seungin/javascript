@@ -12,10 +12,23 @@
         }
         p{
             background-color: aquamarine;
+            
         }
     </style>
     <script>
-      
+      window.onload = () => {
+        let div = document.querySelector('#div');
+        let p = document.querySelector('#p');
+
+        div.onmouseover = () => {
+            console.log('div에 마우스 올라감');
+            div.style.borderColor = 'red';
+        }
+        div.onmouseout = () => {
+            console.log('div에서 마우스 벗어남');
+            div.style.borderColor = 'black'
+        }
+      }
     </script>
 </head>
 <body>

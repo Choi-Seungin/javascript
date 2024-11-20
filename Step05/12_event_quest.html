@@ -5,7 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>롤오버 이미지</title>
     <script>
-        
+        window.onload = () => {
+            let img = document.querySelector('img')
+
+            img.onmouseenter = () => {
+                img.src = 'img/linkedin_2.png';
+            }
+            img.onmouseleave = () => {
+                img.src = 'img/linkedin_1.png';
+            }
+        }
 
     </script>
 </head>

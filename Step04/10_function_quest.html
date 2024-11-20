@@ -1,26 +1,52 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>function</title>
     <style>
-        table{
+        table {
             border-collapse: collapse;
         }
-        td{
-            padding:30px;
-            border:1px solid black;
+
+        td {
+            padding: 30px;
+            border: 1px solid black;
         }
     </style>
 </head>
+
 <body>
     <input type="text" id="txt">
-    <button id="btn">로또번호 생성</button>
+    <button id="btn" onclick="generateLotto()">로또번호 생성</button>
     <hr>
     <div id="area"></div>
     <script>
-      
+        function generateLotto() {
+            //1. txt에서 로또 세트 개수 읽어옴
+            let lottoSet = Number(document.querySelector('#txt').value);
+            //2. 표로 로또번호 출력할 태그를 문자열로 만듦
+            let lotto = [];
+            while (lotto.length < lottoSet) {
+                let arr = [];
+                while (arr.length < 6) {
+                    let n = Math.floor(Math.random() * 45) + 1;
+                    if(arr.indexOf(n) == -1)
+                    arr.push(n);
+                }
+                lotto.push(arr);
+            }
+            //3. area에 2번에서 만든 문자열을 innerHTML에 저장해서 화면에 로또번호 출력
+            let tag = '';
+            lotto.forEach(arr => {tag += `<tr><td>${arr.join('</td><td>')}</td></tr>`});
+            tag = `<table>${tag}</table>`;
+            document.querySelector('#area').innerHTML = tag;
+            
+
+        }
+
     </script>
 </body>
+
 </html>

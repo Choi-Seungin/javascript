@@ -1,14 +1,31 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>evnet</title>
     <script>
-      
+        //이미지 태그를 클릭했을 때 한번은 체크로 표시
+        //또 클릭을하면 원상태
+        //이미지 경로 속성값 src
+        window.onload = () => {
+            let img = document.querySelector('img')
+            let count = 0;
+            let check = false;
+            img.onclick = () => {
+                    img.src = count++ % 2 == 0 ? 'img/non_check.png' : 'img/check.png';
+            }
+            img.onclick = () => {
+                check = !check;
+                img.src = check ? 'img/check.png' : 'img/non_check.png';
+            }
+        }
     </script>
 </head>
+
 <body>
     <img src="img/non_check.png" alt="">
 </body>
+
 </html>

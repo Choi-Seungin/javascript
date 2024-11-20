@@ -18,7 +18,7 @@
     <input type="text" name="t2" value="B"><br>
     <input type="text" name="t3" value="C"><br>
     <input type="text" name="t4" value="D"><br>
-
+    
     <p>1</p>
     <p>2</p>
     <p><b>3</b></p>
@@ -26,7 +26,40 @@
     <p>5</p>
     <h1>제목 태그</h1>
     <script>
-     
+        let txt = document.getElementById('txt');
+        // document.getElementsByClassName(클래스 속성값)
+        // document.getElementsByName(name 속성값)
+        //console.log(txt.value);
+        // document.querySelector('선택자'); ---> 하나의 요소만 반환
+        txt = document.querySelector('#txt');
+        console.log(txt.value);
+        //선택된 태그의 속성값 변경
+        txt.value = '바꾼값';
+        txt.type = 'password';
+        console.log(txt.value);
+        // document.querySelectorAll('선택자') ---> 배열로 반환
+        let p = document.querySelectorAll('p');
+        console.log(p);
+        for(tag of p){
+            console.log(tag.innerHTML);
+            tag.innerHTML = `<u>${Math.ceil(Math.random()*26)}</u>`;
+            //background-color --> backgroundColor
+            //font-weight --> fontWeight
+            tag.style.backgroundColor = 'green';
+            //글자색 흰색으로 변경
+            tag.style.color = '#ffffff'
+        }
+
+        //input 태그 전부 선택
+        let input = document.querySelectorAll('input');
+        for(tag of input){
+            //입력된 값을 삭제, 배경색을 전부 빨강색 처리
+            tag.value = '';
+            tag.style.backgroundColor = 'red';
+            //읽기 전용으로 처리, 데이터 입력을 막음
+            console.log(tag.readOnly);
+            tag.readOnly = true;
+        }
 
     </script>
 </body>
