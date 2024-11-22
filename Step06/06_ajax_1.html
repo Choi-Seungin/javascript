@@ -5,7 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ajax</title>
     <script>
-     
+     window.onload = () => {
+        document.querySelector('button').onclick = () => {
+            //ajax를 이용해서 openweather의 날씨 정보를 읽어 옴
+
+            //1. url세팅
+            //let url = 'https://api.openweathermap.org/data/2.5/weather?id=1835847&appid=dadc7dd4fa6296d83703503b6a4d4796';
+            let url = 'https://api.openweathermap.org/data/2.5/weather?id=1835848&appid=dadc7dd4fa6296d83703503b6a4d4796&units=metric';
+
+            //2. HttpRequest 객체 생성
+            let request = new XMLHttpRequest();
+
+            //3. URL 및 전송 방식 세팅, 결과를 받을 데이터 형식 세팅
+            request.open('GET',url);
+            request.responseType = 'json';
+            //4-1. 이벤트 처리 - 데이터 요청에 성공 했을 때 -> 받은 데이터 출력
+            request.addEventListener('load', (result) => {
+                console.log(result);
+                console.log(result.currentTarget.response.main.temp);
+                let json = result.currentTarget.response;
+                //result에 아래 내용들 뽑아서 출력
+                let tag = '';
+                //도시명
+                tag += `<p>${json.name}</p>`;
+                console.log(result.currentTarget.response.name);
+                //현재 날씨
+                tag += `<p>${json.weather[0].main}</p>`;
+                console.log(result.currentTarget.response.weather[0].main);
+                //최고온도
+                tag += `<p>${json.main.temp_max}</p>`;
+                console.log(result.currentTarget.response.main.temp_max);
+                //최저온도
+                tag += `<p>${json.main.temp_min}</p>`;
+                console.log(result.currentTarget.response.main.temp_min);
+                //현재온도
+                tag += `<p>${json.main.temp}</p>`;
+                console.log(result.currentTarget.response.main.temp);
+                //바람세기
+                tag += `<p>${json.wind.speed}</p>`;
+                console.log(result.currentTarget.response.wind.speed);
+                //바람방향
+                tag += `<p>바람 방향 : <span class='deg'>↑</span></p>`;
+                document.querySelector('.result').innerHTML = tag;
+                document.querySelector('.deg').style.transform = `rotateZ(${json.wind.deg}deg)`;
+                document.querySelector('.deg').style.display = 'inline-block';
+            } )
+            //4-2. 이벤트 처리 - 데이터 요청에 실패 했을 때
+            request.addEventListener('error', (result) =>{
+                console.log(result);
+            } )
+            //5. 데이터 요청 
+            request.send();
+        }
+     }
     </script>
 </head>
 <body>

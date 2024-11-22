@@ -66,9 +66,8 @@
             document.querySelectorAll('.thumnail img').forEach((obj) => {
                 obj.onclick = (e) => {
                     document.querySelector('.main_img').src = e.target.src;
-                        e.target.style.opacity = 1;
+
                 }
-                obj.style.opacity = 0.5;
             });
 
             let left_option = {

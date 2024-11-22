@@ -7,10 +7,13 @@
     <title>ajax</title>
     <script>
         window.onload = () => {
+            let date = new Date();
+            date.setDate(date.getDate() - 1);
+            let formattedDate = date.toISOString().split('T')[0].replace(/-/g, '');
+            console.log(formattedDate)
             document.querySelector('button').onclick = () => {
                 let search = document.querySelector('#txt').value;
-                let url = `http://nam3324.synology.me:32813/search/blog?query=${search}`;
-
+                let url = `http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=66de03b48ed506e77136c7d2df228725&targetDt=${search}`;
                 fetch(url)
                     .then((result) => {
                         //호출 결과를 받는 부분
@@ -22,9 +25,14 @@
                         //검색 결과를 출력
                         console.log(json)
                         let tag = '';
-                        json.items.forEach(obj => {
-                            tag += `<h3><a href='${obj.link}'>${obj.title}</a></h3>`;
-                            tag += `<p>${obj.description}</p>`;
+                        json.boxOfficeResult.dailyBoxOfficeList.forEach(obj => {
+                            let color = '';
+                            if (obj.rankOldAndNew == 'NEW')
+                                color = 'red';
+                            else
+                                color = 'blue';
+                            tag += `<h3>${obj.movieNm}</h3>`;
+                            tag += `<p>순위 : ${obj.rank} <span class='${color}'>${obj.rankOldAndNew}</span></p>`;
                         })
                         document.querySelector('.result').innerHTML = tag;
                     })
@@ -35,10 +43,22 @@
             }
         }
     </script>
+    <style>
+        .red{
+            color: red;
+            font-size: 0.5em;
+        }
+        .blue{
+            color : blue;
+            font-size: 0.5em;
+        }
+    </style>
 </head>
 
 <body>
-    <input type="text" id="txt">
+    <h1>박스오피스 순위</h1>
+    <label for="txt">날짜 입력(YYYYMMDD)</label>
+    <input type="text" id="txt" placeholder="날짜를 입력해주세요">
     <button>검색하기</button>
     <div class="result"></div>
 </body>

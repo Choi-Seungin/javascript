@@ -9,8 +9,7 @@
         window.onload = () => {
             document.querySelector('button').onclick = () => {
                 let search = document.querySelector('#txt').value;
-                let url = `http://nam3324.synology.me:32813/search/blog?query=${search}`;
-
+                let url = `http://kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json?key=66de03b48ed506e77136c7d2df228725&movieNm=${search}`;
                 fetch(url)
                     .then((result) => {
                         //호출 결과를 받는 부분
@@ -22,9 +21,9 @@
                         //검색 결과를 출력
                         console.log(json)
                         let tag = '';
-                        json.items.forEach(obj => {
-                            tag += `<h3><a href='${obj.link}'>${obj.title}</a></h3>`;
-                            tag += `<p>${obj.description}</p>`;
+                        json.movieListResult.movieList.forEach(obj => {
+                            tag += `<h3>${obj.movieNm}</h3>`;
+                            tag += `<p>개봉년도 : ${obj.openDt.slice(0, 4)} / 장르 : ${obj.repGenreNm}</p>`;
                         })
                         document.querySelector('.result').innerHTML = tag;
                     })
